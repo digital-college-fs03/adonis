@@ -50,12 +50,12 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "@adonisjs/auth": "^9.0.2",
+    "@adonisjs/auth": "^9.1.1",
     "@adonisjs/core": "^6.2.1",
     "@adonisjs/cors": "^2.2.1",
-    "@adonisjs/lucid": "^19.0.0",
+    "@adonisjs/lucid": "^20.1.0",
     "@adonisjs/session": "^7.1.1",
-    "@vinejs/vine": "^1.7.0",
+    "@vinejs/vine": "^1.7.1",
     "better-sqlite3": "^9.3.0",
     "luxon": "^3.4.4",
     "mysql2": "^3.8.0",

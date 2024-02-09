@@ -7,6 +7,7 @@
 |
 */
 
+import login_controller from '#controllers/login_controller'
 import UserController from '#controllers/user_controller'
 import router from '@adonisjs/core/services/router'
 
@@ -15,5 +16,7 @@ router.get('/', async () => {
     hello: 'world',
   }
 })
+
+router.post('/login', login_controller)
 
 router.resource('users', UserController).apiOnly()

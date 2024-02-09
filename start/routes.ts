@@ -20,6 +20,8 @@ router.get('/', async () => {
 
 router.post('/login', login_controller)
 
+router.get('/public', () => 'esta rota é pública')
+
 router.get('/private', () => 'esta rota é privada')
   .use(middleware.auth({ guards: ['api'] }))
 

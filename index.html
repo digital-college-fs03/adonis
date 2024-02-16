@@ -19,7 +19,12 @@
     <button onclick="entrar()">
         Entrar
     </button> | 
-    <button onclick="solicitarPrivado()">Solicitação Privada</button>
+    <button onclick="solicitarPrivado()">
+        Solicitação Privada
+    </button> | 
+    <button onclick="solicitarPublico()">
+        Solicitação Pública
+    </button>
     <script>
         async function entrar() {
             const username = document.getElementById('login').value
@@ -43,30 +48,10 @@
                 }
             })
         }
-        /*
-        const run = async function () {
-            await fetch('http://127.0.0.1:3333/public')
-
-            const response = await fetch('http://127.0.0.1:3333/login', {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    "username": "ninja@gmail.com",
-                    "password": "123mudar"
-                })
-            })
-            const data = await response.json()
-
-            fetch('http://127.0.0.1:3333/private', {
-                headers: {
-                    Authorization: "Bearer " + data.token
-                }
-            })
+        
+        function solicitarPublico() {
+            fetch('http://127.0.0.1:3333/public')
         }
-        run()
-        */
     </script>
 </body>
 </html>

@@ -6,6 +6,9 @@ export default async function (http: HttpContext) {
     const { request, response } = http
     const { username, password } = request.only(['username', 'password'])
 
+    if (!username) {
+        return response.forbidden({ username: 'required' })
+    }
     const user = await User.findByOrFail('email', username)
 
     const verified = await hash.verify(user.password, password)

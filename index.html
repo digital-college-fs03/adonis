@@ -6,7 +6,44 @@
     <title>Document</title>
 </head>
 <body>
+    <div>
+        <label for="login">Login</label>
+        <input type="text" id="login" value="wilcorrea@gmail.com">
+    </div>
+    <br>
+    <div>
+        <label for="password">Senha</label>
+        <input type="password" id="password" value="aq1sw2de3">
+    </div>
+    <hr>
+    <button onclick="entrar()">
+        Entrar
+    </button> | 
+    <button onclick="solicitarPrivado()">Solicitação Privada</button>
     <script>
+        async function entrar() {
+            const username = document.getElementById('login').value
+            const password = document.getElementById('password').value
+            const response = await fetch('http://127.0.0.1:3333/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            })
+            const data = await response.json()
+            sessionStorage.setItem('token', data.token)
+        }
+        
+        function solicitarPrivado() {
+            const token = sessionStorage.getItem('token')
+            fetch('http://127.0.0.1:3333/private', {
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            })
+        }
+        /*
         const run = async function () {
             await fetch('http://127.0.0.1:3333/public')
 
@@ -28,7 +65,8 @@
                 }
             })
         }
-        run() 
+        run()
+        */
     </script>
 </body>
 </html>

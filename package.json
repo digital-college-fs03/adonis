@@ -8,7 +8,8 @@
     "start": "node bin/server.js",
     "build": "node ace build",
     "dev": "node ace serve --watch",
-    "test": "node ace test",
+    "test": "NODE_ENV=test node ace migration:run && node ace test",
+    "test:watch": "NODE_ENV=test node ace migration:run && node ace test --watch",
     "lint": "eslint .",
     "format": "prettier --write .",
     "typecheck": "tsc --noEmit"

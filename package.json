@@ -9,6 +9,7 @@
     "build": "node ace build",
     "dev": "node ace serve --watch",
     "test": "NODE_ENV=test node ace migration:run && node ace test",
+    "test:unit": "NODE_ENV=test node ace migration:run && node ace test unit",
     "test:watch": "NODE_ENV=test node ace migration:run && node ace test --watch",
     "lint": "eslint .",
     "format": "prettier --write .",

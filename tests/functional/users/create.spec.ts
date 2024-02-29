@@ -3,25 +3,25 @@ import User from '#models/user'
 import hash from '@adonisjs/core/services/hash'
 
 test.group('Criação de usuário', async () => {
-  // ARRANGE
+  // arrange
   const email = 'test1@digitalcollege.com.br'
   const password = 'aq1sw2de3'
 
   test('a senha é salva encriptada', async ({ assert }) => {
-    // ACT
+    // act
     const user = await User.create({ email, password })
 
-    // ASSERT
+    // assert
     assert.isTrue(hash.isValidHash(user.password))
     assert.isTrue(await hash.verify(user.password, password))
   })
 
   test('email duplicado', async ({ assert }) => {
     try {
-      // ACT
+      // act
       await User.create({ email, password })
     } catch (error) {
-      // ASSERT
+      // assert
       assert.strictEqual(error.code, 'ER_DUP_ENTRY')
       assert.equal(
         error.sqlMessage,

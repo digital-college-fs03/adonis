@@ -1,4 +1,6 @@
 import { assert } from '@japa/assert'
+import { expect } from '@japa/expect'
+import { expectTypeOf } from '@japa/expect-type'
 import { apiClient } from '@japa/api-client'
 import app from '@adonisjs/core/services/app'
 import type { Config } from '@japa/runner/types'
@@ -15,8 +17,10 @@ import testUtils from '@adonisjs/core/services/test_utils'
  */
 export const plugins: Config['plugins'] = [
   assert(),
+  expect(),
+  expectTypeOf(),
   apiClient(),
-  pluginAdonisJS(app)
+  pluginAdonisJS(app),
 ]
 
 /**
@@ -27,11 +31,8 @@ export const plugins: Config['plugins'] = [
  * The teardown functions are executer after all the tests
  */
 export const runnerHooks: Required<Pick<Config, 'setup' | 'teardown'>> = {
-  setup: [
-    () => testUtils.db().withGlobalTransaction()
-  ],
-  teardown: [
-  ],
+  setup: [() => testUtils.db().withGlobalTransaction()],
+  teardown: [],
 }
 
 /**

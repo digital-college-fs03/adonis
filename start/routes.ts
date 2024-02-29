@@ -7,8 +7,9 @@
 |
 */
 
-import login_controller from '#controllers/login_controller'
-import UserController from '#controllers/user_controller'
+import LoginController from '#controllers/login_controller'
+
+const UserController = () => import('#controllers/user_controller')
 import router from '@adonisjs/core/services/router'
 import { middleware } from '#start/kernel'
 
@@ -18,11 +19,10 @@ router.get('/', async () => {
   }
 })
 
-router.post('/login', login_controller)
+router.post('/login', LoginController)
 
 router.get('/public', () => 'esta rota é pública')
 
-router.get('/private', () => 'esta rota é privada')
-  .use(middleware.auth({ guards: ['api'] }))
+router.get('/private', () => 'esta rota é privada').use(middleware.auth({ guards: ['api'] }))
 
 router.resource('users', UserController).apiOnly()

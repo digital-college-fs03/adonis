@@ -8,12 +8,9 @@ import UserService from '#services/user_service'
 export default class UserController {
   constructor(protected userService: UserService) {}
 
-  /**
-   * Handle form submission for the create action
-   */
-  async store({ request }: HttpContext) {
+  async store({ request }: HttpContext, validator = createUserValidator) {
     const data = request.all()
-    const payload = await createUserValidator.validate(data)
+    const payload = await validator.validate(data)
     return this.userService.create(payload)
   }
 }
